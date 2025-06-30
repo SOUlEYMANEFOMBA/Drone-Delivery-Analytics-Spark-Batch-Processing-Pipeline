@@ -1,0 +1,46 @@
+services:
+  spark-master:
+    build:
+      context: ./spark
+      dockerfile: Dockerfile
+    container_name: spark-master
+    environment:
+      - SPARK_MODE=master
+    ports:
+      - "7077:7077"
+      - "8280:8280"
+    networks:
+      - spark-net
+
+  spark-worker:
+    build:
+      context: ./spark
+      dockerfile: Dockerfile
+    container_name: spark-worker
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_MEMORY=1g
+      - SPARK_WORKER_CORES=2
+    networks:
+      - spark-net
+
+  python:
+    build:
+      context: ./python
+      dockerfile: Dockerfile
+    container_name: python-dev
+    volumes:
+      - ..:/workspace
+      - ../key/real-time-traffic-pipeline-30d152e38926.json:/opt/keys/real-time-traffic-pipeline-30d152e38926.json
+      - ../libs/spark-bigquery-with-dependencies_2.12-0.32.2.jar:/opt/libs/spark-bigquery-with-dependencies_2.12-0.32.2.jar
+      - ../libs/gcs-connector-hadoop3-latest.jar:/opt/libs/gcs-connector-hadoop3-latest.jar
+    working_dir: /workspace
+    command: tail -f /dev/null
+    networks:
+      - spark-net
+
+networks:
+  spark-net:
