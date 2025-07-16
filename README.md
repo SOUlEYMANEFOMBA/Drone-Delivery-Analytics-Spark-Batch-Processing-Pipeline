@@ -87,12 +87,57 @@ Pour éviter que Spark n’exécute des tâches déséquilibrées à cause de dr
 
 ---
 
+## 📊 Dashboard de Performance des Drones
+
+ Visualisation interactive des statistiques moyennes de vol par drone (durée, distance, vitesse, consommation batterie), avec des KPIs clairs et des visualisations colorées pour identifier rapidement les drones efficaces ou sous-performants.
+
+### 🎯 Objectifs suivis par drone :
+- **Temps de vol** ≥ 45 min  
+- **Distance parcourue** ≥ 1500 m  
+- **Vitesse moyenne** ≥ 60 m/min  
+- **Batterie restante** ≥ 50%
+
+---
+
+🔗 **[Voir le Dashboard Interactif →](https://lookerstudio.google.com/embed/reporting/f07d1ea8-3e17-4e5f-98fd-1f03c3b7446f/page/tEnnC)**
+
+---
+
+### 🔍 Extrait du Dashboard :
+
+![Drone Delivery Dashboard](./asssets/dashboard.png)  
+> *KPIs avec barres de progression, classement des drones les plus efficaces, répartition des distances, score global de performance.*
+
+---
+
+### 💡 Particularités :
+- **Indicateurs dynamiques** avec seuils personnalisables
+- **Design sombre** optimisé pour la lisibilité
+- **Score d'efficacité** basé sur la consommation énergétique
+- **Classement automatique** des meilleurs drones
+- **Vue métier rapide** pour les utilisateurs non techniques
+
+---
+
+### ✅ Ce que permet ce dashboard :
+- Identifier les **drones sous-performants**
+- Comparer l’**efficacité énergétique** des drones
+- Prioriser les **actions de maintenance ou d’optimisation**
+- Fournir un **retour visuel instantané** sur la flotte
+
+---
+
+### 🔗 Données utilisées :
+- Table agrégée dans **BigQuery** (issue du pipeline Spark)
+- Visualisation avec **Looker Studio**
+
 ## 📤 Étapes suivantes (non implémentées dans ce repo)
 
 - Intégration avec **Apache Airflow** pour l’orchestration
-- Surveillance des métriques via un tableau de bord (Grafana, Looker, PowerBI...)
+
 
 ---
+
 
 ## 📁 Arborescence du projet
 
